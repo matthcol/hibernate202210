@@ -25,6 +25,7 @@ CREATE TABLE movies (
   year smallint NOT NULL,
   color varchar2(15) NULL,
   duration smallint NULL,
+  pg varchar2(10) NULL,
   director_id integer NULL,
   CONSTRAINT chk_movies_year CHECK(year >= 1850),
   CONSTRAINT chk_title_not_empty CHECK(length(title) > 0),
