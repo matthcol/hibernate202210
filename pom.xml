@@ -43,9 +43,8 @@
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<!-- misc tools -->
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
