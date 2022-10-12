@@ -3,6 +3,7 @@ package reflix.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.lang.annotation.Target;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -10,7 +11,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 @Entity
+@Table(name="persons")
 public class People {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

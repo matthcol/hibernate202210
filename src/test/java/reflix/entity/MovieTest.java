@@ -12,8 +12,10 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 
 import java.time.Duration;
@@ -26,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
 //@Rollback(false)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE) // same db as app
+@ActiveProfiles("test")
 class MovieTest {
 
     @Autowired
@@ -48,8 +51,9 @@ class MovieTest {
         var movie = Movie.builder()
                 .title("Prey")
                 .year((short) 2022)
+                .duration((short) 99)
                 // .duration(Duration.ofMinutes(99))
-                .duration(Duration.parse("PT1H39M"))
+                // .duration(Duration.parse("PT1H39M"))
                 .build();
         entityManager.persist(movie);
         entityManager.flush();
@@ -133,7 +137,15 @@ class MovieTest {
     }
 
 
+    void testTransaction() {
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        // query
+        // query
+        transaction.commit();
+        // catch ... finally => transaction.rollback()
 
+    }
 
 
 
